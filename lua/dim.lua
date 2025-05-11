@@ -55,7 +55,7 @@ function util.highlight_word(line, from, to)
     color = "#ffffff"
   end
   local hl_group = string.format("%sDimmed", final)
-  vim.api.nvim_set_hl(0, hl_group, { fg = util.darken(color, 0.75), undercurl = false, underline = false })
+  vim.api.nvim_set_hl(0, hl_group, { fg = util.darken(color, dim.opts.alpha), undercurl = false, underline = false })
   vim.api.nvim_buf_add_highlight(0, dim.ns, hl_group, line, from, to)
   if dim.opts.disable_lsp_decorations then
     for _, lsp_ns in pairs(vim.diagnostic.get_namespaces()) do
@@ -143,7 +143,7 @@ dim.hig_unused = function()
   end
 end
 
-dim.opts = { disable_lsp_decorations = false }
+dim.opts = { disable_lsp_decorations = false, alpha = 0.4 }
 
 --- Setup Function
 --- @param tbl table config options
